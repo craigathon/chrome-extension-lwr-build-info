@@ -59,6 +59,12 @@ function showBuilderNotation(contextSelector) {
             divBadge.className = 'component-builder-notation slds-badge';
             divBadge.style = 'position:absolute; z-index:100002';
             component.prepend(divBadge);
+            //this is used in the query to determine if a badge already exists for the component
+            let divComponentId = document.createElement("div");
+            divComponentId.innerHTML = componentId;
+            divComponentId.className = 'component-builder-id';
+            divComponentId.style = 'font-size: 0px;';
+            divBadge.prepend(divComponentId);
         }
     });
 }
