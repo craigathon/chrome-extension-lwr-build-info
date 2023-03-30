@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="popup.css">
+    <script id="component-types-data" type="application/json">
+        {
+        "community_byo" : "Standard Template",
+        "community_login" : "Standard Login",
+        "community_layout" : "Standard Layout",
+        "dxp_layout" : "Standard Layout",
+        "dxp_content_layout" : "Standard Layout",
+        "dxp_base" : "Standard Content",
+        "dxp_search" : "Standard Content",
+        "dxp_form" : "Standard Form",
+        "community_navigation" : "Standard Content",
+        "community_builder" : "Standard Content",
+        "dxp_flow" : "Standard Process Automation",
+        "interaction_orchestrator" : "Standard Process Automation",
+        "experience_messaging" : "Standard Support",
+        "dxp_action" : "Standard Record",
+        "dxp_records" : "Standard Record",
+        "experience_availability" : "Standard Other Components",
+        "flexi_grid" : "AppExchange",
+        "personalizeany" : "AppExchange",
+        "anymodal" : "AppExchange",
+        "tabsaccordions" : "AppExchange",
+        "ccnavmenus" : "AppExchange",
+        "cccalendar" : "AppExchange",
+        "c" : "Custom"
+        }
+    </script>
+    <script id="components-data" type="application/json">
+        {
+        "community_byo-scoped-header-and-footer" : {"name":"Build Your Own (LWR)", "description":"See <a target=\"_blank\" href=\"https://developer.salesforce.com/docs/atlas.en-us.232.0.exp_cloud_lwr.meta/exp_cloud_lwr/intro_overview.htm\">What Is the Build Your Own (LWR) Template?</a>"},
+        "community_login-login-form" : {"name":"Login Form", "description":"Let users log in with login fields for a username and password and a button for submitting both."},
+        "community_login-community-logo" : {"name":"Community Logo"},
+        "community_login-self-register" : {"name":"Self Registration", "description":"The Self-Registration component lets users set up their accounts so that you don’t have to add each one manually. Users put their information into the form fields, and when they click Sign Up, an account is created for them. This component has a basic set of fields that you can customize, and you can add more fields."},
+        "community_login-forgot-password" : {"name":"Forgot Password", "description":"Use the Forgot Password component to let users request a new password."},
+        "community_login-check-email" : {"name":"Check Email"},
+        "community_login-employee-login-link" : {"name":"Employee Login Link", "description":"Use the Employee Login Link component to direct users with accounts in the site’s parent org to their login page. When your employees or other users who have accounts in the parent org for the site end up on the site login page, you can redirect them to their own login page with a link. They can then log in with all the settings and permissions of their org account."},
+        "community_login-social-login" : {"name":"Social Login", "description":"The Social Login component provides users with icons that they can click to log in to a third-party account, such as Facebook© or LinkedIn©. Set these icons for each authentication provider that you configure for the org."},
+        "community_layout-slds-flexible-layout" : {"name":"Page (Flexible Layout)", "description":"This is the page container."},
+        "community_layout-section" : {"name":"Section", "description":"See <a target=\"_blank\" href=\"https://developer.salesforce.com/docs/atlas.en-us.232.0.exp_cloud_lwr.meta/exp_cloud_lwr/brand_section.htm\">Create a Section Color Palette</a>"},
+        "dxp_layout-columns" : {"name":"Columns", "description":"Add up to six columns of content components to your page. Customize the column structure by selecting the Column Layout icon. Resize the columns by using the handles between the columns. To delete a column, click beneath it."},
+        "dxp_content_layout-site-logo" : {"name":"Site Logo"},
+        "dxp_content_layout-banner" : {"name":"Banner", "description":"Create a banner layout on your site using images, text, and buttons. Use data binding in this component to dynamically populate content from Salesforce CMS and other data sources."},
+        "dxp_content_layout-tile2" : {"name":"Tile", "description":"Create a tile layout on your site using images, text, and buttons. Use data binding in this component to dynamically populate content from Salesforce CMS and other data sources."},
+        "dxp_content_layout-card" : {"name":"Card", "description":"Use this flexible container to add content in a rectangular card. You can specify the card’s height, width, and background color, and you can customize image settings."},
+        "dxp_content_layout-overlap" : {"name":"Overlap", "description":"Overlap content components on the page. Overlap an image with content components, such as Text Block and Button, for a layered look."},
+        "dxp_content_layout-grid" : {"name":"Grid", "description":"Use the Grid component to show collections or list views in LWR sites. Select a data source, layout, and pagination option to show content saved in Salesforce. In non-enhanced LWR sites, the Grid component shows object list views. In enhanced LWR sites, the component can display object list views or CMS collections created in enhanced workspaces. When you select the Show pagination option, you can customize how you want users to navigate through content on your site."},
+        "dxp_content_layout-paginator" : {"name":"Pagination", "description":"Activate this component by turning on pagination within the Grid component."},
+        "dxp_content_layout-paginator2" : {"name":"Pagination", "description":"Activate this component by turning on pagination within the Grid component."},
+        "dxp_base-button" : {"name":"Button", "description":"Use buttons as calls to action linking to external pages or pages in your site. Nest the Button component inside other components, such as Banner and Tile, to add calls to action in any region of the page."},
+        "dxp_base-horizontal-line" : {"name":"Horizontal Line", "description":"Add a horizontal line to visually separate elements on the page. Choose the line’s weight, width, and style."},
+        "dxp_base-image" : {"name":"Image", "description":"Use the image component to add images to your page. Add the image URL and alt text for screen readers. This component can dynamically populate content from Salesforce CMS and other data sources when used on CMS or record detail pages."},
+        "dxp_base-image-design-substitute" : {"name":"Image", "description":"Use the image component to add images to your page. Add the image URL and alt text for screen readers. This component can dynamically populate content from Salesforce CMS and other data sources when used on CMS or record detail pages."},
+        "dxp_base-language-selector-design" : {"name":"Language Selector", "description":"Allow users to choose their own site language. After configuring translations, add the Language Selector component to your page to provide a language selection dropdown menu."},
+        "dxp_base-text-block" : {"name":"Text Block", "description":"Add text to the page. Text formatting, such as heading tags and font size, is inherited from site branding settings."},
+        "dxp_base-video" : {"name":"Video", "description":"Use the Video component to add videos to your page. Add the video embed URL and settings such as aspect ratio, width, and horizontal alignment. Use data binding in this component to dynamically populate content from Salesforce CMS and other data sources."},
+        "dxp_base-video-design-substitute" : {"name":"Video", "description":"Use the Video component to add videos to your page. Add the video embed URL and settings such as aspect ratio, width, and horizontal alignment. Use data binding in this component to dynamically populate content from Salesforce CMS and other data sources."},
+        "dxp_search-search-input" : {"name":"Search Bar", "description":"Add the Search Bar and Results Layout components so that visitors can search for CMS content and CRM records. When you add the Search Bar component to the header section, search is available across all site pages. See <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.networks_search_site.htm&type=5\">Set Up CMS Content Search in an LWR Site</a> and <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.exp_cloud_build_lwr_crm_search.htm&type=5\">Set Up CRM Search in LWR Sites (Beta)</a>."},
+        "dxp_search-search-results" : {"name":"Results Layout", "description":"Add the Results Layout component, along with the Search Bar component, so that your site visitors can view search results. The Results Layout component is available only after you create a standard Search page. See <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.networks_search_site.htm&type=5\">Set Up CMS Content Search in an LWR Site</a> and <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.exp_cloud_build_lwr_crm_search.htm&type=5\">Set Up CRM Search in LWR Sites (Beta)</a>."},
+        "dxp_form-contact-support-form" : {"name":"Contact Support Form", "description":"Add the Contact Support Form component to enable users to contact support and generate a case from your site. Several preconfigured component fields streamline the collection of information from the user to get their support request submitted and resolved quickly. The component contains several custom fields that you can configure to your company’s preferences."},
+        "dxp_form-lead-form" : {"name":"Lead Form", "description":"Route leads gathered in your site to the Leads object in Salesforce. Using preconfigured mappings, you can transfer your lead data without tedious background setup."},
+        "dxp_form-contact-form" : {"name":"Marketing Cloud Form", "description":"Send contact information directly from your LWR sites to Marketing Cloud data extensions. Create data extensions from your Marketing Cloud Form component with one click and then start gathering customer info."},
+        "community_navigation-tile-menu-design-substitute" : {"name":"Tile Menu", "description":"Use the Tile Menu Lightning Web component in Experience Builder to add an intuitive and visually stunning navigation experience to your site."},
+        "community_builder-html-editor" : {"name":"HTML Editor","description":"Use the HTML Editor component to create and edit custom content in HTML. In organizations with at least one active community license, this component can use data binding to dynamically populate content from Salesforce CMS and other data sources on record and CMS detail pages."},
+        "community_builder-output-rich-text" : {"name":"Rich Content Editor", "description":"Use the Rich Content Editor component to add formatted custom text to your site pages, along with images and videos. To add alt text to an image, make sure that the component is in edit mode, then right-click the image. In orgs with at least one active community license, this component can use data binding to dynamically populate content from Salesforce CMS and other data sources on record and CMS detail pages."},
+        "community_builder-rich-text-editor" : {"name":"Rich Content Editor", "description":"Use the Rich Content Editor component to add formatted custom text to your site pages, along with images and videos. To add alt text to an image, make sure that the component is in edit mode, then right-click the image. In orgs with at least one active community license, this component can use data binding to dynamically populate content from Salesforce CMS and other data sources on record and CMS detail pages."},
+        "dxp_flow-flow-design-substitute" : {"name":"Flow","description":"Automate business processes with the Flow component. Add screen flows to your pages so that you can capture information, take customers through workflows, and use the flexibility of Flow Builder to your advantage. Flows that use Aura components aren’t supported."},
+        "interaction_orchestrator-work-guide-substitute" : {"name":"Flow Orchestration Work Guide", "description":"Use the Flow Orchestration Work Guide component to allow credentialed site visitors to complete work items assigned to them by an orchestration."},
+        "experience_messaging-embedded-messaging-design-substitute" : {"name":"Embedded Messaging", "description":"To modernize how you communicate with customers, add Messaging for Web to your Experience Builder site. See <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.miaw_deployment_experience_builder.htm&type=5\">Configure a Messaging for Web Deployment in an Experience Builder Site</a>"},
+        "dxp_action-platform-action-ribbon-design-substitute" : {"name":"Actions Bar (Beta)", "description":"With this component, users can take action on Salesforce data from your LWR site. Add a custom set of actions, choose the number of actions to show in the bar, and customize how more actions appear in the dropdown menu. Individual action button styles are inherited from site branding settings. You can add actions to the component only after you create headless Lightning web components quick actions. See <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.networks_lwr_actions_bar_considerations.htm&type=5\">Actions Bar Considerations in LWR Sites (Beta)</a>."},
+        "dxp_records-detail-panel" : {"name":"Record Detail (Beta)", "description":"View and edit records in your LWR site. In the component, users see the page layout that’s assigned to their profile. The component inherits formatting, such as font and color, from your site’s branding settings."},
+        "experience_availability-auto-refresh-design-time-substitute" : {"name":"Page Refresh", "description":"On the Too Many Requests page, the Page Refresh component automatically refreshes the page for your customers. The Page Refresh component is built into the body of the Too Many Requests page, so there’s no need to manually add it to the page."},
+        "flexi_grid-flexi-grid-layout" : {"name":"Flexi-Grid Layout (LWR)", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N4V00000Gv1psUAB&tab=e\">Available on AppExchange</a> The Flexi-Grid Layout component for Experience Cloud LWR brings you the ability to create amazing modern designs by allowing you to render and control up to 12 regions of content, and drag/drop any component from your panel in builder into them."},
+        "personalizeany-personalize-anything" : {"name":"Personalize Anything (LWR)", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N4V00000HKXqnUAH&tab=r\">Available on AppExchange</a> Personalize an entire region of components in your Experience Cloud LWR site! Drag and drop Personalize Anything onto a page in builder, set your visibility criteria for the personalized region, and configure the logic for the criteria evaluation."},
+        "personalizeany-personalize-html" : {"name":"Personalize HTML", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N4V00000HKXqnUAH&tab=r\">Available on AppExchange</a> Personalize an entire region of components in your Experience Cloud LWR site! Drag and drop Personalize Anything onto a page in builder, set your visibility criteria for the personalized region, and configure the logic for the criteria evaluation."},
+        "anymodal-any-modal" : {"name":"AnyModal (LWR)", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N4V00000HKw2TUAT&tab=e\">Available on AppExchange</a> LWR-only Experience Builder component that lets you build the modal experience of your choice!"},
+        "tabsaccordions-tabs-and-accordions" : {"name":"Tabs and Accordions (LWR)", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N4V00000HEVolUAH&tab=e\">Available on AppExchange</a> LWR-only Experience Builder component that renders up to 10 tabs or accordion sections with drag/droppable regions. Take control of your LWR site’s layout with this component that allows you to add content to up to 10 tabs or accordion sections!"},
+        "ccnavmenus-nav-menu" : {"name":"Multi-Level Navigation Menu", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N3u00000OMohyEAD&tab=e\">Available on AppExchange</a> You can configure up to 6 levels of depth in your menus, control the look and feel with some styling configuration, horizontal vs vertical presentation, language filtering support, and much more!"},
+        "cccalendar-cccalendar" : {"name":"Calendar for Experience Cloud", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N3u00000ONzaqEAD&tab=e\">Available on AppExchange</a> Display a feature-rich events calendar in your Experience Cloud site! Color-code events, filter events, configure timezones and offer users real-time event date/time conversion, and much more!"},
+        "cccalendar-cc-upcoming-events" : {"name":"Calendar Upcoming Events", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N3u00000ONzaqEAD&tab=e\">Available on AppExchange</a> Display a feature-rich events calendar in your Experience Cloud site! Color-code events, filter events, configure timezones and offer users real-time event date/time conversion, and much more!"},
+        "cccalendar-ccevent-details" : {"name":"Calendar Event Details for Experience Cloud", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N3u00000ONzaqEAD&tab=e\">Available on AppExchange</a> Display a feature-rich events calendar in your Experience Cloud site! Color-code events, filter events, configure timezones and offer users real-time event date/time conversion, and much more!"}
+        }
+    </script>
+    <title>Chrome Addon v3: popup</title>
+</head>
+<body>
+    This is the <span class="special-text">HTML</span> body of the addon.
+
+    <button id="showBuildInfo">Show Build Information</button>
+    <button id="hideBuildInfo">Hide Build Information</button>
+    <script src="popup.js"></script>
+</body>
+</html>

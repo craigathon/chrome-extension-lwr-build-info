@@ -1,0 +1,32 @@
+{
+    // Comments are accepted in the manifest, even though it is JSON.
+    "manifest_version": 3,
+    "name": "Lighting Web Runtime Build Info",
+    "description": "Providing information about components on the page of your LWR site.",
+    "version": "1.0.0",
+    "icons": {
+        "16": "logo/logo-16.png",
+        "48": "logo/logo-48.png",
+        "128": "logo/logo-128.png"
+    },
+    /*"options_page": "settings/settings.html",*/
+    "action": {
+        "default_title": "Lighting Web Runtime Build Info UI",
+        "default_popup": "popup/popup.html"
+    },
+    "permissions": ["declarativeContent"],
+    "host_permissions": [
+        "*://*/*"
+    ],
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "content_scripts": [{
+        "run_at": "document_end",
+        "js": ["foreground.js"],
+        "matches": [
+            "https://*/*",
+            "http://*/*"
+          ]
+    }]
+}
