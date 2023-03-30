@@ -26,9 +26,10 @@ function showBuilderNotation(contextSelector) {
         let componentId = component.dataset.componentId;
         if (!component.innerText.includes(componentId)) {
             let tagName = component.tagName.toLowerCase();
+            let tagNameClean = tagName.replace('-design-substitute', '');
             let tagNamePrefix = tagName.substring(0, tagName.indexOf('-'));
             let componentType = componentTypesData[tagNamePrefix];
-            let componentData = componentsData[tagName];
+            let componentData = componentsData[tagNameClean];
             let componentName = tagName;
             if (componentData != null) {
                 componentName = componentData.name;
