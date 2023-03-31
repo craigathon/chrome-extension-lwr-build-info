@@ -29,6 +29,9 @@ function showBuilderNotation(contextSelector) {
             let tagNameClean = tagName.replace('-design-substitute', '').replace('-design', '');
             let tagNamePrefix = tagName.substring(0, tagName.indexOf('-'));
             let componentType = componentTypesData[tagNamePrefix];
+            if (componentType === undefined) {
+                componentType = 'Custom Package';
+            }
             let componentData = componentsData[tagNameClean];
             let componentName = tagName;
             if (componentData != null) {
