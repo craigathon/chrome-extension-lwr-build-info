@@ -47,8 +47,11 @@ function showBuilderNotation(contextSelector) {
             component.prepend(divBadgeUnder);
 
             let divBadge = document.createElement("div");
+            divBadge.dataset.componenttype = componentType;
+            divBadge.dataset.tagname = tagName;
+            divBadge.dataset.id = componentId;
             divBadge.addEventListener("click", (e) => openComponentDetail(e), false);
-            let badge = '<a data-componenttype="' + componentType + '" data-tagname="' + tagName + '" data-id="' + componentId + '">' + componentName;
+            let badge = '<a>' + componentName;
             if (componentData != null) {
                  + componentName;
                 if (componentData.hasOwnProperty('description')) {
@@ -106,7 +109,7 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
 });
 
 function openComponentDetail(e) {
-    let obj = e.target;
+    let obj = e.currentTarget;
     let componentData = componentsData[obj.dataset.tagname];
     if (componentData == undefined) {
         componentData = {};
