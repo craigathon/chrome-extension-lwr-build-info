@@ -87,6 +87,7 @@
         "b2c_lite_commerce-commerce-layout" : {"name":"Commerce Template", "description":"See <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?language=en_US&id=sf.comm_lwr_aura_comps.htm&type=5\">LWR Store Templates</a>"},
         "b2c_lite_commerce-commerce-header" : {"name":"Commerce Header"},
         "b2c_lite_commerce-commerce-footer" : {"name":"Commerce Footer"},
+        "b2c_lite_commerce-checkout-header" : {"name":"Page Header", "description":"See <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.comm_checkout_header_component.htm&type=5\">Checkout Header Component (LWR) for B2C Stores</a>"},
         "b2c_lite_commerce-error" : {"name":"Page Error Message"},
         "b2c_lite_commerce-promo-banner" : {"name":"Promo Banner"},
         "b2c_lite_commerce-store-logo-cms" : {"name":"Site Logo", "description":"See <a target=\"_blank\" href=\"https://help.salesforce.com/s/articleView?id=sf.comm_store_logo_component.htm&type=5\">Store Logo Component (LWR) for B2C Stores</a>"},
@@ -159,13 +160,20 @@
         "cccalendar-ccevent-details" : {"name":"Calendar Event Details for Experience Cloud", "description":"<a target=\"_blank\" href=\"https://appexchange.salesforce.com/listingDetail?listingId=a0N3u00000ONzaqEAD&tab=e\">Available on AppExchange</a> Display a feature-rich events calendar in your Experience Cloud site! Color-code events, filter events, configure timezones and offer users real-time event date/time conversion, and much more!"}
         }
     </script>
-    <title>Chrome Addon v3: popup</title>
+    <title>Lightning Web Runtime Build Info Popup</title>
 </head>
 <body>
-    This is the <span class="special-text">HTML</span> body of the addon.
+    <div class="section">This is a Salesforce Lighting Web Runtime (LWR) Site.</div>
+    <div class="section">Use the buttons below to show and hide clickable component badges.</div>
+    <div class="section">
+        <button id="showBuildInfo">Show Build Information</button>
+    </div>
+    <div class="section">
+        <button id="hideBuildInfo">Hide Build Information</button>
+    </div>
 
-    <button id="showBuildInfo">Show Build Information</button>
-    <button id="hideBuildInfo">Hide Build Information</button>
+    <div class="section">Click any component badge to reveal more information about it.</div>
+    <div class="section"></div>
     <script src="popup.js"></script>
 </body>
 </html>

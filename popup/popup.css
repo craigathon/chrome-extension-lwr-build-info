@@ -1,11 +1,10 @@
 body {
-    background-color: #222;
-    color: #eee;
-
+    background-color: #f8f9fa;
+    color: #202124;
     width: 16rem;
     height: 4rem;
 }
 
-.special-text {
-    color: red;
+.section {
+    padding: 5px;
 }
