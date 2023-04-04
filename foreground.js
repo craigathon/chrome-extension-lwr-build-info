@@ -1,12 +1,5 @@
-// This script gets injected into any opened page
-// whose URL matches the pattern defined in the manifest
-// (see "content_script" key).
-// Several foreground scripts can be declared
-// and injected into the same or different pages.
-
 chrome.runtime.sendMessage({subject: "loaded"}, function(response) {});
 
-let webruntimeApp = document.querySelector('webruntime-app');
 let componentTypesData = null;
 let componentsData = null;
 let badgeStyle = 'cursor:pointer;border: 1px solid #d9d7d5;padding: 4px 7px;background-color: #ecebea;border-radius: 20px;font-size: 12px;';
