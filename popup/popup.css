@@ -8,3 +8,7 @@ body {
 .section {
     padding: 5px;
 }
+
+.message {
+    color:purple;
+}
