@@ -8,7 +8,6 @@ chrome.runtime.sendMessage({subject: "loaded"}, function(response) {
     //console.log("Response: ", response);
 });
 
-
 let webruntimeApp = document.querySelector('webruntime-app');
 let componentTypesData = null;
 let componentsData = null;
@@ -53,7 +52,6 @@ function showBuilderNotation(contextSelector) {
             divBadge.addEventListener("click", (e) => openComponentDetail(e), false);
             let badge = '<a>' + componentName;
             if (componentData != null) {
-                 + componentName;
                 if (componentData.hasOwnProperty('description')) {
                     divBadge.innerHTML = badge + '</a>';
                 } else {
