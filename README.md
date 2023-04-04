@@ -1,6 +1,6 @@
 <div align="center">
     <img src="https://github.com/craigathon/chrome-extension-lwr-build-info/raw/31784e19ee72ba70ce04c64530668d9bd922a573/logo/logo-128.png"/>
-    <h1>Lighting Web Runtime Build Info</h1>h
+    <h1>Lighting Web Runtime Build Info</h1>
     <h3>Providing information about components on the page of your LWR site</h3>
 </div>
 
