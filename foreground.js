@@ -2,7 +2,6 @@ chrome.runtime.sendMessage({subject: "loaded"}, function(response) {});
 
 let componentTypesData = null;
 let componentsData = null;
-let badgeStyle = 'cursor:pointer;border: 1px solid #d9d7d5;padding: 4px 7px;background-color: #ecebea;border-radius: 20px;font-size: 12px;';
 
 function showBuilderNotation(contextSelector) {
     let context = document;
@@ -33,8 +32,8 @@ function showBuilderNotation(contextSelector) {
             
             let divBadgeUnder = document.createElement("div");
             divBadgeUnder.innerHTML = 'spacer';
-            divBadgeUnder.className = 'component-badge';
-            divBadgeUnder.style = 'visibility:hidden;' + badgeStyle;
+            divBadgeUnder.className = 'lwrbi-component-badge';
+            divBadgeUnder.style = 'visibility:hidden;';
             component.prepend(divBadgeUnder);
 
             let divBadge = document.createElement("div");
@@ -42,7 +41,7 @@ function showBuilderNotation(contextSelector) {
             divBadge.dataset.tagname = tagName;
             divBadge.dataset.id = componentId;
             divBadge.addEventListener("click", (e) => openComponentDetail(e), false);
-            let badge = '<a style="color: #202124;text-decoration:none;">' + componentName;
+            let badge = '<a>' + componentName;
             if (componentData != null) {
                 if (componentData.hasOwnProperty('description')) {
                     divBadge.innerHTML = badge + '</a>';
@@ -53,13 +52,13 @@ function showBuilderNotation(contextSelector) {
                 divBadge.innerHTML = badge + '</a>';
             }
 
-            divBadge.className = 'component-badge';
-            divBadge.style = 'position:absolute; z-index:100002;' + badgeStyle;
+            divBadge.className = 'lwrbi-component-badge';
+            divBadge.style = 'position:absolute; z-index:100002;';
             component.prepend(divBadge);
             //this is used in the query to determine if a badge already exists for the component
             let divComponentId = document.createElement("div");
             divComponentId.innerHTML = componentId;
-            divComponentId.className = 'component-badge-id';
+            divComponentId.className = 'lwrbi-component-badge-id';
             divComponentId.style = 'font-size: 0px;';
             divBadge.prepend(divComponentId);
         }
@@ -77,11 +76,11 @@ function getComponentDepth(component) {
     return depth;
 }
 function hideBuilderNotation() {
-    let builderNotations = document.querySelectorAll('.component-badge');
+    let builderNotations = document.querySelectorAll('.lwrbi-component-badge');
     builderNotations.forEach(function(builderNotation) {
         builderNotation.remove();
     });
-    let detail = document.querySelector(".component-detail");
+    let detail = document.querySelector(".lwrbi-component-detail");
     detail.remove();
 }
 
@@ -107,13 +106,12 @@ function openComponentDetail(e) {
     componentData['tagname'] = obj.dataset.tagname;
     componentData['id'] = obj.dataset.id;
 
-    let detail = document.querySelector(".component-detail");
+    let detail = document.querySelector(".lwrbi-component-detail");
     if (detail != null) {
         detail.remove();
     }
     detail = document.createElement("div");
-    detail.style = "position: fixed;padding: 10px;bottom: 10px;right: 1px;border: 1px solid gray;border-radius: 3px;box-shadow: -4px 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s;background-color: white;z-index: 100002;max-width: 400px;color:#414042;";
-    detail.className = "component-detail"
+    detail.className = "lwrbi-component-detail"
     appendOutputField(detail, 'Name', componentData.name);
     appendOutputField(detail, 'Description', componentData.description);
     appendOutputField(detail, 'Type', componentData.componenttype);
