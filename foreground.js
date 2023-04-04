@@ -4,9 +4,7 @@
 // Several foreground scripts can be declared
 // and injected into the same or different pages.
 
-chrome.runtime.sendMessage({subject: "loaded"}, function(response) {
-    //console.log("Response: ", response);
-});
+chrome.runtime.sendMessage({subject: "loaded"}, function(response) {});
 
 let webruntimeApp = document.querySelector('webruntime-app');
 let componentTypesData = null;
@@ -51,7 +49,7 @@ function showBuilderNotation(contextSelector) {
             divBadge.dataset.tagname = tagName;
             divBadge.dataset.id = componentId;
             divBadge.addEventListener("click", (e) => openComponentDetail(e), false);
-            let badge = '<a style="color: #202124">' + componentName;
+            let badge = '<a style="color: #202124;text-decoration:none;">' + componentName;
             if (componentData != null) {
                 if (componentData.hasOwnProperty('description')) {
                     divBadge.innerHTML = badge + '</a>';
@@ -96,7 +94,6 @@ function hideBuilderNotation() {
 
 chrome.runtime.onMessage.addListener((msg, sender) => {
     if ((msg.from === 'popup') && (msg.subject === 'showBuildInfo')) {
-        console.log('show');
         componentTypesData = msg.componentTypesData;
         componentsData = msg.componentsData;
         showBuilderNotation();
@@ -116,7 +113,6 @@ function openComponentDetail(e) {
     componentData['componenttype'] = obj.dataset.componenttype;
     componentData['tagname'] = obj.dataset.tagname;
     componentData['id'] = obj.dataset.id;
-    console.log(componentData);
 
     let detail = document.querySelector(".component-detail");
     if (detail != null) {
