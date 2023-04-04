@@ -16,7 +16,7 @@ Clicking on a badge reveals additional information about the component.
 - If you did not do it already, **toggle the "developer mode"**. This is usually a toggle button at the top right of the extensions page.
 - Click the button **_load unpacked extension_**.
 - In the window that pops up, **select the folder that contains this minimal extension**, then **click _ok_**.
-- **Done!** A new extension called _Chrome Addon v3 Starter_ should have appeared in the list.
+- **Done!** A new extension called _Lighting Web Runtime Build Info_ should have appeared in the list.
 
 ## Q&A
 > Does this work only on Chrome or on **other web browsers** as well?
