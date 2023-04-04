@@ -11,6 +11,7 @@ chrome.runtime.sendMessage({subject: "loaded"}, function(response) {
 let webruntimeApp = document.querySelector('webruntime-app');
 let componentTypesData = null;
 let componentsData = null;
+let badgeStyle = 'cursor:pointer;border: 1px solid #d9d7d5;padding: 4px 7px;background-color: #ecebea;border-radius: 20px;font-size: 12px;';
 
 function showBuilderNotation(contextSelector) {
     let context = document;
@@ -41,8 +42,8 @@ function showBuilderNotation(contextSelector) {
             
             let divBadgeUnder = document.createElement("div");
             divBadgeUnder.innerHTML = 'spacer';
-            divBadgeUnder.className = 'component-builder-notation slds-badge';
-            divBadgeUnder.style = 'visibility:hidden;'
+            divBadgeUnder.className = 'component-badge';
+            divBadgeUnder.style = 'visibility:hidden;' + badgeStyle;
             component.prepend(divBadgeUnder);
 
             let divBadge = document.createElement("div");
@@ -50,7 +51,7 @@ function showBuilderNotation(contextSelector) {
             divBadge.dataset.tagname = tagName;
             divBadge.dataset.id = componentId;
             divBadge.addEventListener("click", (e) => openComponentDetail(e), false);
-            let badge = '<a>' + componentName;
+            let badge = '<a style="color: #202124">' + componentName;
             if (componentData != null) {
                 if (componentData.hasOwnProperty('description')) {
                     divBadge.innerHTML = badge + '</a>';
@@ -61,13 +62,13 @@ function showBuilderNotation(contextSelector) {
                 divBadge.innerHTML = badge + '</a>';
             }
 
-            divBadge.className = 'component-builder-notation slds-badge';
-            divBadge.style = 'position:absolute; z-index:100002';
+            divBadge.className = 'component-badge';
+            divBadge.style = 'position:absolute; z-index:100002;' + badgeStyle;
             component.prepend(divBadge);
             //this is used in the query to determine if a badge already exists for the component
             let divComponentId = document.createElement("div");
             divComponentId.innerHTML = componentId;
-            divComponentId.className = 'component-builder-id';
+            divComponentId.className = 'component-badge-id';
             divComponentId.style = 'font-size: 0px;';
             divBadge.prepend(divComponentId);
         }
@@ -85,7 +86,7 @@ function getComponentDepth(component) {
     return depth;
 }
 function hideBuilderNotation() {
-    let builderNotations = document.querySelectorAll('.component-builder-notation');
+    let builderNotations = document.querySelectorAll('.component-badge');
     builderNotations.forEach(function(builderNotation) {
         builderNotation.remove();
     });
