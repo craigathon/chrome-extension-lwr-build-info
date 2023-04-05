@@ -142,6 +142,7 @@ function openComponentDetail(e) {
         hasTable = true;
     }
 
+    let colorPaletteClassName = 'Default';
     for (let classIndex in component.classList) {
         let className = component.classList[classIndex];
         if (typeof (className) != 'string') {
@@ -152,10 +153,13 @@ function openComponentDetail(e) {
             appendPropertyTable(detail, computedStyles, componentStyleProperties, component);
             hasTable = true;
         } else if (className.startsWith('dxpBrand_')) {
-            appendOutputField(detail, 'Color Palette', className);
-            appendPropertyTable(detail, computedStyles, colorPaletteProperties);
-            hasTable = true;
+            colorPaletteClassName = className;
         }
+    }
+    if (componentData.tagname === 'community_layout-section') {
+        appendOutputField(detail, 'Color Palette', colorPaletteClassName);
+        appendPropertyTable(detail, computedStyles, colorPaletteProperties);
+        hasTable = true;
     }
     if (hasTable) {
         detail.style = 'max-width: 800px;';
@@ -168,7 +172,7 @@ function appendOutputField(detail, title, value) {
         return;
     }
     let field = document.createElement("div");
-    field.style = "padding-bottom: 10px;overflow-wrap: normal;";
+    field.style = "padding-top: 5px;padding-bottom: 5px;overflow-wrap: normal;";
     field.innerHTML = "<b>" + title + ": </b>" + value;
     detail.append(field);
 }
