@@ -27,8 +27,9 @@
     transition: 0.3s;
     background-color: white;
     z-index: 100002;
-    max-width: 450px;
+    max-width: 400px;
     color:#414042;
+    font-size: 1rem;
 }
 
 .lwrbi-component-detail a {

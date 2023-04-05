@@ -1,5 +1,6 @@
 chrome.runtime.sendMessage({subject: "loaded"}, function(response) {});
 
+let themeProperties = null;
 let colorPaletteProperties = null;
 let componentStyleProperties = null;
 let componentTypesData = null;
@@ -96,6 +97,7 @@ function hideBuilderNotation() {
 
 chrome.runtime.onMessage.addListener((msg, sender) => {
     if ((msg.from === 'popup') && (msg.subject === 'showBuildInfo')) {
+        themeProperties = msg.themeProperties;
         colorPaletteProperties = msg.colorPaletteProperties;
         componentStyleProperties = msg.componentStyleProperties;
         componentTypesData = msg.componentTypesData;
@@ -132,7 +134,14 @@ function openComponentDetail(e) {
     appendOutputField(detail, 'TagName', componentData.tagname);
     appendOutputField(detail, 'Selector', '[data-component-id="' + componentData.id + '"]');
     
+    let hasTable = false;
     let computedStyles = getComputedStyle(component);
+    if (componentData.specialtype === 'template') {
+        appendOutputField(detail, 'Theme', '');
+        appendPropertyTable(detail, computedStyles, themeProperties);
+        hasTable = true;
+    }
+
     for (let classIndex in component.classList) {
         let className = component.classList[classIndex];
         if (typeof (className) != 'string') {
@@ -141,12 +150,16 @@ function openComponentDetail(e) {
         if (className.startsWith('dxpStyle_')) {
             appendOutputField(detail, 'Spacing', className);
             appendPropertyTable(detail, computedStyles, componentStyleProperties, component);
+            hasTable = true;
         } else if (className.startsWith('dxpBrand_')) {
             appendOutputField(detail, 'Color Palette', className);
             appendPropertyTable(detail, computedStyles, colorPaletteProperties);
+            hasTable = true;
         }
     }
-   
+    if (hasTable) {
+        detail.style = 'max-width: 800px;';
+    }
     document.body.append(detail);
 }
 
