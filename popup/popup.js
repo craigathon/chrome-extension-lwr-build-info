@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     let colorPaletteProperties = JSON.parse(document.getElementById('color-palette-properties').textContent);
+    let componentStyleProperties = JSON.parse(document.getElementById('component-style-properties').textContent);
     let componentTypesData = JSON.parse(document.getElementById('component-types-data').textContent);
     let componentsData = JSON.parse(document.getElementById('components-data').textContent);
     let message = document.querySelector('.message');
@@ -13,6 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 from: 'popup',
                 subject: 'showBuildInfo',
                 colorPaletteProperties: colorPaletteProperties,
+                componentStyleProperties: componentStyleProperties,
                 componentTypesData: componentTypesData,
                 componentsData: componentsData
             }).catch(error => message.innerHTML = 'Please reload the page');

@@ -1,6 +1,7 @@
 chrome.runtime.sendMessage({subject: "loaded"}, function(response) {});
 
 let colorPaletteProperties = null;
+let componentStyleProperties = null;
 let componentTypesData = null;
 let componentsData = null;
 
@@ -24,9 +25,6 @@ function showBuilderNotation(contextSelector) {
         if (!component.innerText.includes(componentId)) {
             let tagName = component.tagName.toLowerCase();
             let tagNameClean = tagName.replace('-design-substitute', '').replace('-design', '');
-            if (tagNameClean === 'community_layout-section') {
-                specialType = 'section';
-            }
             let tagNamePrefix = tagName.substring(0, tagName.indexOf('-'));
             let componentType = componentTypesData[tagNamePrefix];
             if (componentType === undefined) {
@@ -99,6 +97,7 @@ function hideBuilderNotation() {
 chrome.runtime.onMessage.addListener((msg, sender) => {
     if ((msg.from === 'popup') && (msg.subject === 'showBuildInfo')) {
         colorPaletteProperties = msg.colorPaletteProperties;
+        componentStyleProperties = msg.componentStyleProperties;
         componentTypesData = msg.componentTypesData;
         componentsData = msg.componentsData;
         showBuilderNotation();
@@ -132,14 +131,22 @@ function openComponentDetail(e) {
     appendOutputField(detail, 'Type', componentData.componenttype);
     appendOutputField(detail, 'TagName', componentData.tagname);
     appendOutputField(detail, 'Selector', '[data-component-id="' + componentData.id + '"]');
-    if (componentData.specialtype === 'section') {
-        let dxpBrandClass = component.classList[0];
-        if (dxpBrandClass.startsWith('dxpBrand_')) {
-            appendOutputField(detail, 'Color Palette', dxpBrandClass);
-            let computedStyles = getComputedStyle(component);
+    
+    let computedStyles = getComputedStyle(component);
+    for (let classIndex in component.classList) {
+        let className = component.classList[classIndex];
+        if (typeof (className) != 'string') {
+            break;
+        }
+        if (className.startsWith('dxpStyle_')) {
+            appendOutputField(detail, 'Spacing', className);
+            appendPropertyTable(detail, computedStyles, componentStyleProperties, component);
+        } else if (className.startsWith('dxpBrand_')) {
+            appendOutputField(detail, 'Color Palette', className);
             appendPropertyTable(detail, computedStyles, colorPaletteProperties);
         }
     }
+   
     document.body.append(detail);
 }
 
@@ -161,14 +168,13 @@ function appendPropertyTable(detail, computedStyles, builderProperties) {
     heading.innerHTML = '<th>Label</th><th>Property</th><th>Value</th>'
     table.append(heading);
     for (var sectionKey in builderProperties) { 
-        console.log(sectionKey);
         let section = document.createElement("tr");
         section.innerHTML = '<td><b>' + sectionKey +  '</b></td><td>' + '</td><td>' + '</td>';
         table.append(section);
         for (var propertyKey in builderProperties[sectionKey]) { 
             let property = document.createElement("tr");
             let label = builderProperties[sectionKey][propertyKey];
-            let value = computedStyles.getPropertyValue(propertyKey);
+            let value = computedStyles.getPropertyValue(propertyKey).trim();
             property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + value + '</td>';
             table.append(property);
         }
