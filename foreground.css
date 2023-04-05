@@ -27,10 +27,20 @@
     transition: 0.3s;
     background-color: white;
     z-index: 100002;
-    max-width: 400px;
+    max-width: 450px;
     color:#414042;
 }
 
 .lwrbi-component-detail a {
     color: #005fb2 !important;
+}
+
+.lwrbi-property-table {
+    height: 300px;
+    overflow-y: auto;
+    font-size: 12px;
+}
+
+.lwrbi-property-table tr:nth-child(even) {
+    background: #CCC
 }

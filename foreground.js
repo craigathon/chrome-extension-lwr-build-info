@@ -1,5 +1,6 @@
 chrome.runtime.sendMessage({subject: "loaded"}, function(response) {});
 
+let colorPaletteProperties = null;
 let componentTypesData = null;
 let componentsData = null;
 
@@ -12,11 +13,20 @@ function showBuilderNotation(contextSelector) {
         }
     }
     let components = context.querySelectorAll('[data-component-id]');
+    let firstComponent = true;
     components.forEach(function(component) {
         let componentId = component.dataset.componentId;
+        let specialType = '';
+        if (firstComponent) {
+            firstComponent = false;
+            specialType = 'template';
+        }
         if (!component.innerText.includes(componentId)) {
             let tagName = component.tagName.toLowerCase();
             let tagNameClean = tagName.replace('-design-substitute', '').replace('-design', '');
+            if (tagNameClean === 'community_layout-section') {
+                specialType = 'section';
+            }
             let tagNamePrefix = tagName.substring(0, tagName.indexOf('-'));
             let componentType = componentTypesData[tagNamePrefix];
             if (componentType === undefined) {
@@ -40,6 +50,7 @@ function showBuilderNotation(contextSelector) {
             divBadge.dataset.componenttype = componentType;
             divBadge.dataset.tagname = tagName;
             divBadge.dataset.id = componentId;
+            divBadge.dataset.specialtype = specialType;
             divBadge.addEventListener("click", (e) => openComponentDetail(e), false);
             let badge = '<a>' + componentName;
             if (componentData != null) {
@@ -63,6 +74,7 @@ function showBuilderNotation(contextSelector) {
             divBadge.prepend(divComponentId);
         }
     });
+    firstComponent = true;
 }
 function getComponentDepth(component) {
     let currentElement = component;
@@ -86,6 +98,7 @@ function hideBuilderNotation() {
 
 chrome.runtime.onMessage.addListener((msg, sender) => {
     if ((msg.from === 'popup') && (msg.subject === 'showBuildInfo')) {
+        colorPaletteProperties = msg.colorPaletteProperties;
         componentTypesData = msg.componentTypesData;
         componentsData = msg.componentsData;
         showBuilderNotation();
@@ -98,6 +111,7 @@ chrome.runtime.onMessage.addListener((msg, sender) => {
 
 function openComponentDetail(e) {
     let obj = e.currentTarget;
+    let component = obj.parentElement;
     let componentData = componentsData[obj.dataset.tagname];
     if (componentData == undefined) {
         componentData = {};
@@ -105,6 +119,7 @@ function openComponentDetail(e) {
     componentData['componenttype'] = obj.dataset.componenttype;
     componentData['tagname'] = obj.dataset.tagname;
     componentData['id'] = obj.dataset.id;
+    componentData['specialtype'] = obj.dataset.specialtype;
 
     let detail = document.querySelector(".lwrbi-component-detail");
     if (detail != null) {
@@ -117,6 +132,14 @@ function openComponentDetail(e) {
     appendOutputField(detail, 'Type', componentData.componenttype);
     appendOutputField(detail, 'TagName', componentData.tagname);
     appendOutputField(detail, 'Selector', '[data-component-id="' + componentData.id + '"]');
+    if (componentData.specialtype === 'section') {
+        let dxpBrandClass = component.classList[0];
+        if (dxpBrandClass.startsWith('dxpBrand_')) {
+            appendOutputField(detail, 'Color Palette', dxpBrandClass);
+            let computedStyles = getComputedStyle(component);
+            appendPropertyTable(detail, computedStyles, colorPaletteProperties);
+        }
+    }
     document.body.append(detail);
 }
 
@@ -128,4 +151,28 @@ function appendOutputField(detail, title, value) {
     field.style = "padding-bottom: 10px;overflow-wrap: normal;";
     field.innerHTML = "<b>" + title + ": </b>" + value;
     detail.append(field);
+}
+
+function appendPropertyTable(detail, computedStyles, builderProperties) {
+    let tableContainer = document.createElement("div");
+    tableContainer.className = 'lwrbi-property-table';
+    let table = document.createElement("table");
+    let heading = document.createElement("tr");
+    heading.innerHTML = '<th>Label</th><th>Property</th><th>Value</th>'
+    table.append(heading);
+    for (var sectionKey in builderProperties) { 
+        console.log(sectionKey);
+        let section = document.createElement("tr");
+        section.innerHTML = '<td><b>' + sectionKey +  '</b></td><td>' + '</td><td>' + '</td>';
+        table.append(section);
+        for (var propertyKey in builderProperties[sectionKey]) { 
+            let property = document.createElement("tr");
+            let label = builderProperties[sectionKey][propertyKey];
+            let value = computedStyles.getPropertyValue(propertyKey);
+            property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + value + '</td>';
+            table.append(property);
+        }
+    }
+    tableContainer.append(table);
+    detail.append(tableContainer);
 }
