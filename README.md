@@ -8,7 +8,7 @@ This repository contains a prototype solution for rapidly understanding the buil
 
 When an LWR site is loaded, the extension popup can be opened. This UI will allow you to add and remove a clickable badge for each component placed by builder on the live site page.
 
-Clicking on a badge reveals additional information about the component.
+Clicking on a badge reveals additional information about the component. Theme and Section components display additional styling property information.
 
 ## Installation
 - **Fork** this repo, then **clone your forked repo locally**. If you don't have a github account, you can simply download a zip of the repo and unzip it on your computer.
