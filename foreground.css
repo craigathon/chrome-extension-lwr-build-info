@@ -45,7 +45,7 @@
 }
 
 .lwrbi-property-table {
-    max-height: 300px;
+    max-height: 350px;
     overflow-y: auto;
     font-size: 12px;
     border: 1px solid gray;

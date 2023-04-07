@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let componentTypesData = JSON.parse(document.getElementById('component-types-data').textContent);
     let componentsData = JSON.parse(document.getElementById('components-data').textContent);
     let message = document.querySelector('.message');
+
     let show = document.querySelector('#showBuildInfo');
     show.addEventListener('click', function() {
         message.innerHTML = '';

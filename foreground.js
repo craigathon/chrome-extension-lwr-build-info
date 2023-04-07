@@ -185,6 +185,14 @@ function appendOutputField(detail, title, value) {
     detail.append(field);
 }
 
+function addColorChip(value) {
+    if (value.startsWith('#') || value.startsWith('rgb(')) {
+        let tempValue = value;
+        value = tempValue + '<div class="lwrbi-color-chip" style="background-color:' + tempValue + ';"></div>';
+    }
+    return value;
+}
+
 function appendPropertyTable(detail, computedStyles, builderProperties) {
     let tableContainer = document.createElement("div");
     tableContainer.className = 'lwrbi-property-table';
@@ -200,11 +208,7 @@ function appendPropertyTable(detail, computedStyles, builderProperties) {
             let property = document.createElement("tr");
             let label = builderProperties[sectionKey][propertyKey];
             let value = computedStyles.getPropertyValue(propertyKey).trim();
-            
-            if (value.startsWith('#') || value.startsWith('rgb(')) {
-                let tempValue = value;
-                value = tempValue + '<div class="lwrbi-color-chip" style="background-color:' + tempValue + ';"></div>';
-            }
+            value = addColorChip(value);
             property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + value + '</td>';
             table.append(property);
         }
@@ -218,19 +222,17 @@ function appendAllPropertyTable(detail, computedStyles, cssCustomProperties) {
     tableContainer.className = 'lwrbi-property-table';
     let table = document.createElement("table");
     let heading = document.createElement("tr");
-    heading.innerHTML = '<th style="width:20%">Index</th><th style="width:40%">Property</th><th style="width:40%">Value</th>'
+    heading.innerHTML = '<th style="width:10%">Index</th><th style="width:40%">Property</th><th style="width:25%">Declared As</th><th style="width:25%">In This Context</th>'
     table.append(heading);
     let index = 0;
     for (var propertyKey in cssCustomProperties) { 
         let property = document.createElement("tr");
         let label = index++;
-        let value = computedStyles.getPropertyValue(propertyKey).trim();
-        
-        if (value.startsWith('#') || value.startsWith('rgb(')) {
-            let tempValue = value;
-            value = tempValue + '<div class="lwrbi-color-chip" style="background-color:' + tempValue + ';"></div>';
-        }
-        property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + value + '</td>';
+        let declared = cssCustomProperties[propertyKey];
+        let thisContext = computedStyles.getPropertyValue(propertyKey).trim();
+        declared = addColorChip(declared);
+        thisContext = addColorChip(thisContext);
+        property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + declared + '</td><td>' + thisContext + '</td>';
         table.append(property);
     }
     tableContainer.append(table);
