@@ -192,6 +192,11 @@ function appendPropertyTable(detail, computedStyles, builderProperties) {
             let property = document.createElement("tr");
             let label = builderProperties[sectionKey][propertyKey];
             let value = computedStyles.getPropertyValue(propertyKey).trim();
+            
+            if (value.startsWith('#') || value.startsWith('rgb(')) {
+                let tempValue = value;
+                value = tempValue + '<div class="lwrbi-color-chip" style="background-color:' + tempValue + ';"></div>';
+            }
             property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + value + '</td>';
             table.append(property);
         }

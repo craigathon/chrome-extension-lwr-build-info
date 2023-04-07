@@ -45,3 +45,10 @@
 .lwrbi-property-table tr:nth-child(even) {
     background: #CCC
 }
+
+.lwrbi-color-chip {
+    height: 12px;
+    width: 20px;
+    float: right;
+    margin: 1px;
+}
