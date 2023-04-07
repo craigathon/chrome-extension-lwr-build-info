@@ -39,32 +39,26 @@ function showBuilderNotation(contextSelector) {
             let depth = getComponentDepth(component);
             componentName = depth + '. ' + componentName;
             
+            //this badge is positioned relative and hidden
+            //it allocates the space the absolute positioned badge will need in front of it
             let divBadgeUnder = document.createElement("div");
             divBadgeUnder.innerHTML = 'spacer';
             divBadgeUnder.className = 'lwrbi-component-badge';
             divBadgeUnder.style = 'visibility:hidden;';
             component.prepend(divBadgeUnder);
 
+            //this is the actual badge that is visible and the user will click on
             let divBadge = document.createElement("div");
+            divBadge.className = 'lwrbi-component-badge';
+            divBadge.style = 'position:absolute; z-index:100002;';
             divBadge.dataset.componenttype = componentType;
             divBadge.dataset.tagname = tagName;
             divBadge.dataset.id = componentId;
             divBadge.dataset.specialtype = specialType;
             divBadge.addEventListener("click", (e) => openComponentDetail(e), false);
-            let badge = '<a>' + componentName;
-            if (componentData != null) {
-                if (componentData.hasOwnProperty('description')) {
-                    divBadge.innerHTML = badge + '</a>';
-                } else {
-                    divBadge.innerHTML = badge + '.</a>';
-                }
-            } else {
-                divBadge.innerHTML = badge + '</a>';
-            }
-
-            divBadge.className = 'lwrbi-component-badge';
-            divBadge.style = 'position:absolute; z-index:100002;';
+            divBadge.innerHTML = '<a>' + componentName + '</a>';
             component.prepend(divBadge);
+            
             //this is used in the query to determine if a badge already exists for the component
             let divComponentId = document.createElement("div");
             divComponentId.innerHTML = componentId;
@@ -128,6 +122,14 @@ function openComponentDetail(e) {
     }
     detail = document.createElement("div");
     detail.className = "lwrbi-component-detail"
+
+    let closeAnchor = document.createElement('a');
+    closeAnchor.className = "lwrbi-field";
+    closeAnchor.style = "float:right;";
+    closeAnchor.addEventListener("click", (e) => detail.remove(), false);
+    closeAnchor.innerHTML = 'close';
+    detail.append(closeAnchor);
+
     appendOutputField(detail, 'Name', componentData.name);
     appendOutputField(detail, 'Description', componentData.description);
     appendOutputField(detail, 'Type', componentData.componenttype);
@@ -164,6 +166,12 @@ function openComponentDetail(e) {
     if (hasTable) {
         detail.style = 'max-width: 800px;';
     }
+    let displayCustomPropertiesAnchor = document.createElement('div');
+    displayCustomPropertiesAnchor.className = "lwrbi-field";
+    displayCustomPropertiesAnchor.addEventListener("click", (e) => displayAllCustomProperties(e, component), false);
+    displayCustomPropertiesAnchor.innerHTML = '<a>Display All Custom Properties</a>';
+    detail.append(displayCustomPropertiesAnchor);
+
     document.body.append(detail);
 }
 
@@ -172,7 +180,7 @@ function appendOutputField(detail, title, value) {
         return;
     }
     let field = document.createElement("div");
-    field.style = "padding-top: 5px;padding-bottom: 5px;overflow-wrap: normal;";
+    field.className = "lwrbi-field";
     field.innerHTML = "<b>" + title + ": </b>" + value;
     detail.append(field);
 }
@@ -182,7 +190,7 @@ function appendPropertyTable(detail, computedStyles, builderProperties) {
     tableContainer.className = 'lwrbi-property-table';
     let table = document.createElement("table");
     let heading = document.createElement("tr");
-    heading.innerHTML = '<th>Label</th><th>Property</th><th>Value</th>'
+    heading.innerHTML = '<th style="width:33%">Label</th><th style="width:33%">Property</th><th style="width:33%">Value</th>'
     table.append(heading);
     for (var sectionKey in builderProperties) { 
         let section = document.createElement("tr");
@@ -204,3 +212,88 @@ function appendPropertyTable(detail, computedStyles, builderProperties) {
     tableContainer.append(table);
     detail.append(tableContainer);
 }
+
+function appendAllPropertyTable(detail, computedStyles, cssCustomProperties) {
+    let tableContainer = document.createElement("div");
+    tableContainer.className = 'lwrbi-property-table';
+    let table = document.createElement("table");
+    let heading = document.createElement("tr");
+    heading.innerHTML = '<th style="width:20%">Index</th><th style="width:40%">Property</th><th style="width:40%">Value</th>'
+    table.append(heading);
+    let index = 0;
+    for (var propertyKey in cssCustomProperties) { 
+        let property = document.createElement("tr");
+        let label = index++;
+        let value = computedStyles.getPropertyValue(propertyKey).trim();
+        
+        if (value.startsWith('#') || value.startsWith('rgb(')) {
+            let tempValue = value;
+            value = tempValue + '<div class="lwrbi-color-chip" style="background-color:' + tempValue + ';"></div>';
+        }
+        property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + value + '</td>';
+        table.append(property);
+    }
+    tableContainer.append(table);
+    detail.append(tableContainer);
+}
+
+function displayAllCustomProperties(e, component) {
+    let obj = e.currentTarget;
+    let detail = obj.parentElement;
+    obj.outerHTML = '<div class="lwrbi-field"><b>All Custom Properties<a/></div>';
+    detail.style = 'max-width: 800px;';
+
+    let cssCustomPropArray = getCSSCustomPropIndex();
+    cssCustomPropArray = cssCustomPropArray.sort(Comparator);
+    //shift to a unique key structure
+    let cssCustomProperties = {};
+    for (let i=0; i < cssCustomPropArray.length; i++) {
+        let propArray = cssCustomPropArray[i];
+        cssCustomProperties[propArray[0]] = propArray[1];
+    }
+
+    let computedStyles = getComputedStyle(component);
+    appendAllPropertyTable(detail, computedStyles, cssCustomProperties);
+}
+
+function Comparator(a, b) {
+    //alpha sort first position of array of arrays
+    if (a[0] < b[0]) return -1;
+    if (a[0] > b[0]) return 1;
+    return 0;
+  }
+
+
+  //https://css-tricks.com/how-to-get-all-custom-properties-on-a-page-in-javascript/
+const isSameDomain = (styleSheet) => {
+    // Internal style blocks won't have an href value
+    if (!styleSheet.href) {
+        return true;
+    }
+
+    return styleSheet.href.indexOf(window.location.origin) === 0;
+};
+  
+const isStyleRule = (rule) => rule.type === 1;
+  
+const getCSSCustomPropIndex = () =>
+// styleSheets is array-like, so we convert it to an array.
+// Filter out any stylesheets not on this domain
+    [...document.styleSheets].filter(isSameDomain).reduce(
+        (finalArr, sheet) =>
+        finalArr.concat(
+            // cssRules is array-like, so we convert it to an array
+            [...sheet.cssRules].filter(isStyleRule).reduce((propValArr, rule) => {
+            const props = [...rule.style]
+                .map((propName) => [
+                propName.trim(),
+                rule.style.getPropertyValue(propName).trim()
+                ])
+                // Discard any props that don't start with "--". Custom props are required to.
+                .filter(([propName]) => propName.indexOf("--") === 0);
+
+            return [...propValArr, ...props];
+            }, [])
+        ),
+    []
+);

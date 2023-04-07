@@ -28,6 +28,8 @@
     background-color: white;
     z-index: 100002;
     max-width: 400px;
+    max-height: 600px;
+    overflow-y: auto;
     color:#414042;
     font-size: 1rem;
 }
@@ -36,11 +38,26 @@
     color: #005fb2 !important;
 }
 
+.lwrbi-field {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    overflow-wrap: normal;
+}
+
 .lwrbi-property-table {
     max-height: 300px;
     overflow-y: auto;
     font-size: 12px;
+    border: 1px solid gray;
 }
+
+.lwrbi-property-table table {
+    table-layout: fixed;
+}
+
+.lwrbi-property-table td {
+    overflow-wrap: break-word;
+ }
 
 .lwrbi-property-table tr:nth-child(even) {
     background: #CCC
