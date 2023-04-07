@@ -15,7 +15,7 @@ Clicking on a badge reveals additional information about the component. Theme an
 - **Open [the extensions page](chrome://extensions)** in your browser: `chrome://extensions`. This link works on any chromium-based browser.
 - If you did not do it already, **toggle the "developer mode"**. This is usually a toggle button at the top right of the extensions page.
 - Click the button **_load unpacked extension_**.
-- In the window that pops up, **select the folder that contains this minimal extension**, then **click _ok_**.
+- In the window that pops up, **select the folder that contains this extension**, then **click _ok_**.
 - **Done!** A new extension called _Lighting Web Runtime Build Info_ should have appeared in the list.
 
 ## Q&A
