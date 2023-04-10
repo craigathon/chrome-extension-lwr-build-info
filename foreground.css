@@ -54,6 +54,7 @@
 
 .lwrbi-property-table table {
     table-layout: fixed;
+    width:100%;
 }
 
 .lwrbi-property-table tr {
