@@ -217,9 +217,14 @@ function appendPropertyTable(detail, computedStyles, builderProperties) {
     detail.append(tableContainer);
 }
 
-function appendAllPropertyTable(detail, computedStyles, cssCustomProperties) {
+function appendAllPropertyTable(detail, computedStyles, cssCustomProperties, includeNotInContext) {
+    let exiting = document.querySelector('.lwrbi-all-property-table');
+    if (exiting != null) {
+        exiting.remove();
+    }
+    
     let tableContainer = document.createElement("div");
-    tableContainer.className = 'lwrbi-property-table';
+    tableContainer.className = 'lwrbi-property-table lwrbi-all-property-table';
     let table = document.createElement("table");
     let heading = document.createElement("tr");
     heading.innerHTML = '<th style="width:10%">Index</th><th style="width:40%">Property</th><th style="width:25%">Declared As</th><th style="width:25%">In This Context</th>'
@@ -230,6 +235,9 @@ function appendAllPropertyTable(detail, computedStyles, cssCustomProperties) {
         let label = index++;
         let declared = cssCustomProperties[propertyKey];
         let thisContext = computedStyles.getPropertyValue(propertyKey).trim();
+        if (!includeNotInContext && thisContext === '') {
+            continue;
+        }
         declared = addColorChip(declared);
         thisContext = addColorChip(thisContext);
         property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + declared + '</td><td>' + thisContext + '</td>';
@@ -245,17 +253,40 @@ function displayAllCustomProperties(e, component) {
     obj.outerHTML = '<div class="lwrbi-field"><b>All Custom Properties<a/></div>';
     detail.style = 'max-width: 800px;';
 
+    //add checkbox to turn on properties not in this context
+    let checkbox = document.createElement('input');
+    checkbox.type = "checkbox";
+    checkbox.addEventListener("click", (e) => {
+        let checkbox = e.currentTarget;
+        generateAllPropertyTable(detail, component, checkbox.checked);
+    }, false);
+    checkbox.id = "includeNotInContext";
+    detail.append(checkbox);
+
+    let label = document.createElement('label');
+    label.for = checkbox.id;
+    label.innerText = "Include Properties Not In This Context";
+    label.style = "padding-left:5px;"
+    detail.append(label);
+
+    generateAllPropertyTable(detail, component, false);
+}
+
+function generateAllPropertyTable(detail, component, includeNotInContext) {
     let cssCustomPropArray = getCSSCustomPropIndex();
     cssCustomPropArray = cssCustomPropArray.sort(Comparator);
     //shift to a unique key structure
     let cssCustomProperties = {};
     for (let i=0; i < cssCustomPropArray.length; i++) {
         let propArray = cssCustomPropArray[i];
+        if (cssCustomProperties.hasOwnProperty(propArray[0])) {
+            continue;//keep first instance and do not overwrite
+        }
         cssCustomProperties[propArray[0]] = propArray[1];
     }
 
     let computedStyles = getComputedStyle(component);
-    appendAllPropertyTable(detail, computedStyles, cssCustomProperties);
+    appendAllPropertyTable(detail, computedStyles, cssCustomProperties, includeNotInContext);
 }
 
 function Comparator(a, b) {

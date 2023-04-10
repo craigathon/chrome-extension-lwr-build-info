@@ -55,6 +55,10 @@
     table-layout: fixed;
 }
 
+.lwrbi-property-table tr {
+    padding-left: 3px;
+}
+
 .lwrbi-property-table td {
     overflow-wrap: break-word;
  }
