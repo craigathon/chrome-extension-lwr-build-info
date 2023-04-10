@@ -231,13 +231,13 @@ function appendAllPropertyTable(detail, computedStyles, cssCustomProperties, inc
     table.append(heading);
     let index = 0;
     for (var propertyKey in cssCustomProperties) { 
-        let property = document.createElement("tr");
-        let label = index++;
         let declared = cssCustomProperties[propertyKey];
         let thisContext = computedStyles.getPropertyValue(propertyKey).trim();
         if (!includeNotInContext && thisContext === '') {
             continue;
         }
+        let property = document.createElement("tr");
+        let label = index++;
         declared = addColorChip(declared);
         thisContext = addColorChip(thisContext);
         property.innerHTML = '<td>' + label +  '</td><td>' + propertyKey + '</td><td>' + declared + '</td><td>' + thisContext + '</td>';
