@@ -36,6 +36,7 @@
 
 .lwrbi-component-detail a {
     color: #005fb2 !important;
+    cursor:pointer;
 }
 
 .lwrbi-field {
