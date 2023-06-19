@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Lighting Web Runtime Build Info",
+    "name": "Lighting Web Runtime (LWR) Build Info",
     "description": "Providing information about components on the page of your LWR site.",
     "version": "1.0.0",
     "icons": {

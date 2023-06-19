@@ -297,7 +297,7 @@ function Comparator(a, b) {
   }
 
 
-  //https://css-tricks.com/how-to-get-all-custom-properties-on-a-page-in-javascript/
+//https://css-tricks.com/how-to-get-all-custom-properties-on-a-page-in-javascript/
 const isSameDomain = (styleSheet) => {
     // Internal style blocks won't have an href value
     if (!styleSheet.href) {
