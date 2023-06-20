@@ -1,14 +1,16 @@
 <div align="center">
     <img src="https://github.com/craigathon/chrome-extension-lwr-build-info/raw/31784e19ee72ba70ce04c64530668d9bd922a573/logo/logo-128.png"/>
     <h1>Lighting Web Runtime Build Info</h1>
-    <h3>Providing information about components on the page of your LWR site</h3>
+    <h3>Learn, Demo & Build Great LWR Sites. Get information about components on the page of any live Salesforce Experience Cloud LWR site.</h3>
 </div>
 
-This repository contains a prototype solution for rapidly understanding the build structure of a Salesforce LWR site.
+Easily understand what components make up a Salesforce Lighting Web Runtime live site!
 
 When an LWR site is loaded, the extension popup can be opened. This UI will allow you to add and remove a clickable badge for each component placed by builder on the live site page. After navigating to a new page just click 'Show Build Information' within the extension popup again to add badges to new components on the page.
 
 Clicking on a badge reveals additional information about the component. Theme and Section components display additional styling property information.
+
+Give a try on a live LWR demo site: https://capricornhealth.sfdxp.com
 
 ## Installation
 - **Fork** this repo, then **clone your forked repo locally**. If you don't have a github account, you can simply download a zip of the repo and unzip it on your computer.
