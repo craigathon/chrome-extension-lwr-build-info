@@ -1,7 +1,8 @@
 <div align="center">
     <img src="https://github.com/craigathon/chrome-extension-lwr-build-info/raw/31784e19ee72ba70ce04c64530668d9bd922a573/logo/logo-128.png"/>
     <h1>Lighting Web Runtime Build Info</h1>
-    <h3>Learn, Demo & Build Great LWR Sites. Get information about components on the page of any live Salesforce Experience Cloud LWR site.</h3>
+    <h3>Learn, Demo & Build Great LWR Sites.</h3> 
+    <h4>Get information about components on the page of any live Salesforce Experience Cloud LWR site.</h4>
 </div>
 
 Easily understand what components make up a Salesforce Lighting Web Runtime live site!
