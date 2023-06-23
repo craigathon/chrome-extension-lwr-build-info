@@ -1,11 +1,11 @@
 <div align="center">
     <img src="https://github.com/craigathon/chrome-extension-lwr-build-info/raw/31784e19ee72ba70ce04c64530668d9bd922a573/logo/logo-128.png"/>
-    <h1>Lighting Web Runtime Build Info</h1>
+    <h1>Lightning Web Runtime Build Info</h1>
     <h3>Learn, Demo & Build Great LWR Sites.</h3> 
     <h3>Get information about components on the page of any live Salesforce Experience Cloud LWR site.</h3>
 </div>
 
-Easily understand what components make up a Salesforce Lighting Web Runtime live site!
+Easily understand what components make up a Salesforce Lightning Web Runtime live site!
 
 When an LWR site is loaded, the extension popup can be opened. This UI will allow you to add and remove a clickable badge for each component placed by builder on the live site page. After navigating to a new page just click 'Show Build Information' within the extension popup again to add badges to new components on the page.
 
@@ -19,7 +19,7 @@ Give a try on a live LWR demo site: https://capricornhealth.sfdxp.com
 - If you did not do it already, **toggle the "developer mode"**. This is usually a toggle button at the top right of the extensions page.
 - Click the button **_load unpacked extension_**.
 - In the window that pops up, **select the folder that contains this extension**, then **click _ok_**.
-- **Done!** A new extension called _Lighting Web Runtime Build Info_ should have appeared in the list.
+- **Done!** A new extension called _Lightning Web Runtime Build Info_ should have appeared in the list.
 
 ## Q&A
 > Does this work only on Chrome or on **other web browsers** as well?
