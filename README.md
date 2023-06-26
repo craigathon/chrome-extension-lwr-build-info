@@ -5,15 +5,28 @@
     <h3>Get information about components on the page of any live Salesforce Experience Cloud LWR site.</h3>
 </div>
 
-Easily understand what components make up a Salesforce Lightning Web Runtime live site!
+Easily understand how a Salesforce Lightning Web Runtime live site was built!
 
-When an LWR site is loaded, the extension popup can be opened. This UI will allow you to add and remove a clickable badge for each component placed by builder on the live site page. After navigating to a new page just click 'Show Build Information' within the extension popup again to add badges to new components on the page.
+After the LWR site's page loads, open the extension to get started. The extension popup UI will allow you to add and remove a clickable badge for each Experience Builder component on the live site page.
 
-Clicking on a badge reveals additional information about the component. Theme and Section components display additional styling property information.
+Clicking on a badge displays the following information about the component:
+- Display Name in Experience Builder
+- Description of usage
+- Component Type
+- Tag Name
+- Unique Selector for CSS
+- Display Spacing (Margin and Padding) dxp styling hooks when set on the Experience Builder component.
+- Display All Custom Properties as they are declared and their current value in context.
+- Beyond everything above, Clicking on the Theme and Section component badges will display the dxp Styling Hook values with mapping to the standard Theme Panel Property names.
 
-Give a try on a live LWR demo site: https://capricornhealth.sfdxp.com
+Try it on a live LWR demo site: https://capricornhealth.sfdxp.com
+
+--Permissions Information--
+When you add this extension, you will be prompted that it can “Read and change all your data on all websites”. This permission is needed because a Salesforce Experience Cloud site can exist on any Custom Domain. All data required to run this extension is self contained and there is no server communication or logging of any kind. This app will check if the web page contains the HTML tag webruntime-app for the purpose of detecting if it is an LWR site. If true, the page will only be read and changed once extension popup buttons have been clicked. This scope is to process and provide information about components on the page. All code is open source for review.
 
 ## Installation
+Chrome Web Store: https://chrome.google.com/webstore/detail/lightning-web-runtime-lwr/hofogbdlpfgoknbfhjngegecnadnjikc
+
 - **Fork** this repo, then **clone your forked repo locally**. If you don't have a github account, you can simply download a zip of the repo and unzip it on your computer.
 - **Open [the extensions page](chrome://extensions)** in your browser: `chrome://extensions`. This link works on any chromium-based browser.
 - If you did not do it already, **toggle the "developer mode"**. This is usually a toggle button at the top right of the extensions page.
