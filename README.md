@@ -25,7 +25,9 @@ Try it on a live LWR demo site: https://capricornhealth.sfdxp.com
 When you add this extension, you will be prompted that it can “Read and change all your data on all websites”. This permission is needed because a Salesforce Experience Cloud site can exist on any Custom Domain. All data required to run this extension is self contained and there is no server communication or logging of any kind. This app will check if the web page contains the HTML tag webruntime-app for the purpose of detecting if it is an LWR site. If true, the page will only be read and changed once extension popup buttons have been clicked. This scope is to process and provide information about components on the page. All code is open source for review.
 
 ## Installation
-Chrome Web Store: https://chrome.google.com/webstore/detail/lightning-web-runtime-lwr/hofogbdlpfgoknbfhjngegecnadnjikc
+Add directly from the Chrome Web Store: https://chrome.google.com/webstore/detail/lightning-web-runtime-lwr/hofogbdlpfgoknbfhjngegecnadnjikc
+
+-OR-
 
 - **Fork** this repo, then **clone your forked repo locally**. If you don't have a github account, you can simply download a zip of the repo and unzip it on your computer.
 - **Open [the extensions page](chrome://extensions)** in your browser: `chrome://extensions`. This link works on any chromium-based browser.
