@@ -22,6 +22,11 @@ Give a try on a live LWR demo site: https://capricornhealth.sfdxp.com
 - **Done!** A new extension called _Lightning Web Runtime Build Info_ should have appeared in the list.
 
 ## Q&A
+> Do I have to publish my site to use this?
+
+No, you can use this extension on the unpublished version of your site by using **Experience Builder Preview**.<br>
+In Experience Builder, click the 'Preview' button and then use the 'Preview As' drop down within Experience Builder to use this extension on either the 'Authenticated User' or 'Guest User' view of your unpublished site.
+
 > Does this work only on Chrome or on **other web browsers** as well?
 
 At the moment, this should work on every chromium-based web browser that supports v3 extensions.
