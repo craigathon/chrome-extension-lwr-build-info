@@ -2,7 +2,8 @@
     "manifest_version": 3,
     "name": "Lightning Web Runtime (LWR) Build Info",
     "description": "For Salesforce Experience Cloud. Learn, Demo & Build Great LWR Sites. Get detailed information about components on the page.",
-    "version": "1.0.1",
+    "author": "Craig Johnson",
+    "version": "1.0.2",
     "icons": {
         "16": "logo/logo-16.png",
         "32": "logo/logo-32.png",
@@ -10,7 +11,7 @@
         "128": "logo/logo-128.png"
     },
     "action": {
-        "default_title": "Lightning Web Runtime Build Info UI",
+        "default_title": "LWR Build Info",
         "default_popup": "popup/popup.html"
     },
     "permissions": ["declarativeContent"],
