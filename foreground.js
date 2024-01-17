@@ -158,7 +158,9 @@ function openComponentDetail(e) {
             hasTable = true;
         } else if (className.startsWith('dxpBrand_')) {
             colorPaletteClassName = className;
-        } else if (className.startsWith('lwc-') || standardClasses.includes(className)) {
+        } else if (className.startsWith('lwc-') 
+            || className.endsWith('-host')
+            || standardClasses.includes(className)) {
             //do nothing
         } else {
             customClasses.push(className);
