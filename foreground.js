@@ -145,18 +145,27 @@ function openComponentDetail(e) {
     }
 
     let colorPaletteClassName = 'Default';
+    let standardClasses = ['component-wrapper-spacer','comm-section-container'];
+    let customClasses = [];
     for (let classIndex in component.classList) {
         let className = component.classList[classIndex];
         if (typeof (className) != 'string') {
             break;
         }
         if (className.startsWith('dxpStyle_')) {
-            appendOutputField(detail, 'Spacing', className);
+            appendOutputField(detail, 'Styles', className);
             appendPropertyTable(detail, computedStyles, componentStyleProperties, component);
             hasTable = true;
         } else if (className.startsWith('dxpBrand_')) {
             colorPaletteClassName = className;
+        } else if (className.startsWith('lwc-') || standardClasses.includes(className)) {
+            //do nothing
+        } else {
+            customClasses.push(className);
         }
+    }
+    if (customClasses.length) {
+        appendOutputField(detail, 'CSS Classes', customClasses.join(" "));
     }
     if (componentData.tagname === 'community_layout-section') {
         appendOutputField(detail, 'Color Palette', colorPaletteClassName);
