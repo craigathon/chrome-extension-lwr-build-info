@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
     let themeProperties = JSON.parse(document.getElementById('theme-properties').textContent);
+    let sectionProperties = JSON.parse(document.getElementById('section-properties').textContent);
     let colorPaletteProperties = JSON.parse(document.getElementById('color-palette-properties').textContent);
     let componentStyleProperties = JSON.parse(document.getElementById('component-style-properties').textContent);
     let componentTypesData = JSON.parse(document.getElementById('component-types-data').textContent);
@@ -16,6 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 from: 'popup',
                 subject: 'showBuildInfo',
                 themeProperties: themeProperties,
+                sectionProperties: sectionProperties,
                 colorPaletteProperties: colorPaletteProperties,
                 componentStyleProperties: componentStyleProperties,
                 componentTypesData: componentTypesData,

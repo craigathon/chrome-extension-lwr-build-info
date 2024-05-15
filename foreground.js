@@ -1,6 +1,7 @@
 chrome.runtime.sendMessage({subject: "loaded"}, function(response) {});
 
 let themeProperties = null;
+let sectionProperties = null;
 let colorPaletteProperties = null;
 let componentStyleProperties = null;
 let componentTypesData = null;
@@ -92,6 +93,7 @@ function hideBuilderNotation() {
 chrome.runtime.onMessage.addListener((msg, sender) => {
     if ((msg.from === 'popup') && (msg.subject === 'showBuildInfo')) {
         themeProperties = msg.themeProperties;
+        sectionProperties = msg.sectionProperties;
         colorPaletteProperties = msg.colorPaletteProperties;
         componentStyleProperties = msg.componentStyleProperties;
         componentTypesData = msg.componentTypesData;
@@ -139,7 +141,7 @@ function openComponentDetail(e) {
     let hasTable = false;
     let computedStyles = getComputedStyle(component);
     if (componentData.specialtype === 'template') {
-        appendOutputField(detail, 'Theme', '');
+        appendOutputField(detail, 'Theme Properties', '');
         appendPropertyTable(detail, computedStyles, themeProperties);
         hasTable = true;
     }
@@ -172,6 +174,8 @@ function openComponentDetail(e) {
     if (componentData.tagname === 'community_layout-section') {
         appendOutputField(detail, 'Color Palette', colorPaletteClassName);
         appendPropertyTable(detail, computedStyles, colorPaletteProperties);
+        appendOutputField(detail, 'Section Properties', '');
+        appendPropertyTable(detail, computedStyles, sectionProperties);
         hasTable = true;
     }
     if (hasTable) {
@@ -192,7 +196,11 @@ function appendOutputField(detail, title, value) {
     }
     let field = document.createElement("div");
     field.className = "lwrbi-field";
-    field.innerHTML = "<b>" + title + ": </b>" + value;
+    if (value === '') {
+        field.innerHTML = "<b>" + title + "</b>";
+    } else {
+        field.innerHTML = "<b>" + title + ": </b>" + value;
+    }
     detail.append(field);
 }
 
